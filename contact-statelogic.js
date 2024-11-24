@@ -156,14 +156,14 @@ function handleStateSelection(stateInput, suggestions) {
           county.replace("County", "").replace(`, ${matchedState}`, "").trim() // Remove "County" and state
         );
   
-        console.log(`Processed counties for ${matchedState}:`, countiesArray);
+       // console.log(`Processed counties for ${matchedState}:`, countiesArray);
         return countiesArray; // Return cleaned array of county names
       } else {
-        console.log(`State "${stateInput}" not found in the dataset.`);
+      //  console.log(`State "${stateInput}" not found in the dataset.`);
         return [];
       }
     } catch (error) {
-      console.error("Error fetching counties data:", error);
+    //  console.error("Error fetching counties data:", error);
       return [];
     }
   }
