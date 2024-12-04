@@ -118,13 +118,12 @@ export default {
 			return {
 				name: blog?.fieldData?.name,
 				summary: blog?.fieldData?.summary,
+				category: blog?.parentSlug,
 				slug: blogSlug,
 				author: authorName,
 				date: blog?.fieldData?.['date-published'],
 			};
 		});
-
-		console.log(blogWithAuthors);
 
 		// setting request data in the cache
 		await setDataToCache(cacheKey, blogWithAuthors, KV);
