@@ -124,10 +124,16 @@ export default {
 				date: blog?.fieldData?.['date-published'],
 			};
 		});
+			
+		// sorting blogWithAuthors by date in descending order
+		const sortedBlogs = blogWithAuthors.sort((a, b) => {
+  			  return new Date(b.date) - new Date(a.date); // comparing dates in descending order
+		});
+
 
 		// setting request data in the cache
-		await setDataToCache(cacheKey, blogWithAuthors, KV);
+		await setDataToCache(cacheKey, sortedBlogs, KV);
 
-		return new Response(JSON.stringify(blogWithAuthors), { headers: headerOptions });
+		return new Response(JSON.stringify(sortedBlogs), { headers: headerOptions });
 	},
 } satisfies ExportedHandler<Env>;
