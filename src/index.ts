@@ -124,12 +124,14 @@ export default {
 				date: blog?.fieldData?.['date-published'],
 			};
 		});
-			
+
 		// sorting blogWithAuthors by date in descending order
 		const sortedBlogs = blogWithAuthors.sort((a, b) => {
-  			  return new Date(b.date) - new Date(a.date); // comparing dates in descending order
-		});
+			const bDate = b.date ? new Date(b.date).getTime() : 0; // Fallback to epoch
+			const aDate = a.date ? new Date(a.date).getTime() : 0; // Fallback to epoch
 
+			return bDate - aDate; // comparing dates in descending order
+		});
 
 		// setting request data in the cache
 		await setDataToCache(cacheKey, sortedBlogs, KV);
